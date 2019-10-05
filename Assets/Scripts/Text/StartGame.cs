@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void StartG()
     {
-        
+        StartCoroutine(CoRoutine());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator CoRoutine()
     {
-        
+        GameController.instance.Canvas.GetComponent<CanvasGroup>().interactable = false;
+      // float alpha = GameController.instance.Canvas.GetComponent<CanvasGroup>().alpha;
+        while (GameController.instance.Canvas.GetComponent<CanvasGroup>().alpha > 0)
+        {
+           // Debug.Log(GameController.instance.Canvas.GetComponent<CanvasGroup>().alpha);
+            yield return new WaitForSeconds(.1f);
+            GameController.instance.Canvas.GetComponent<CanvasGroup>().alpha -= .1f;
+        }
+       
     }
 }
