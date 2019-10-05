@@ -21,6 +21,9 @@ public class GameController : MonoBehaviour
     public GameObject Canvas;
 
     [HideInInspector]
+    public GameObject DirectionalLight;
+
+    [HideInInspector]
     public float timer;
 
     private void Awake()
@@ -35,6 +38,7 @@ public class GameController : MonoBehaviour
         MainMenu = GameObject.Find("Main Menu");
         CreditsMenu = GameObject.Find("Credits Menu");
         OptionsMenu = GameObject.Find("Options Menu");
+        DirectionalLight = GameObject.Find("Directional Light");
         CreditsMenu.SetActive(false);
         OptionsMenu.SetActive(false);
 
