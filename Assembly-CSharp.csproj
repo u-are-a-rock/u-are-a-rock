@@ -67,9 +67,12 @@
     <Compile Include="Assets\Scripts\Text.cs" />
     <Compile Include="Assets\Scripts\Text\Credits.cs" />
     <Compile Include="Assets\Scripts\Text\ExitGame.cs" />
+    <Compile Include="Assets\Scripts\Text\FadeOutHelpText.cs" />
     <Compile Include="Assets\Scripts\Text\Options.cs" />
     <Compile Include="Assets\Scripts\Text\Return.cs" />
     <Compile Include="Assets\Scripts\Text\StartGame.cs" />
+    <Compile Include="Assets\Scripts\Time\AugSpin.cs" />
+    <Compile Include="Assets\Scripts\Time\Waiter.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Seth8000/Desktop/GitHub/u-are-a-rock/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

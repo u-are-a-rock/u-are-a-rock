@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class Sound : MonoBehaviour
+[System.Serializable]
+public class Sound 
 {
     public string name;
+    public string output;
 
     public AudioClip clip;
 
@@ -17,8 +20,7 @@ public class Sound : MonoBehaviour
 
     public bool loop;
 
-    public bool music;
-
+  
     [HideInInspector]
     public AudioSource source;
 

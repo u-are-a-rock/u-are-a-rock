@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public float timer;
 
+    
+    public AudioMixer mixer;
     private void Awake()
     {
         //Sets instance to this script if there are no others, but destroys the gameobject if the script is not the only one there
@@ -42,26 +44,34 @@ public class GameController : MonoBehaviour
         CreditsMenu.SetActive(false);
         OptionsMenu.SetActive(false);
 
-
+       
 
         //Audio Controller Section
         foreach (Sound s in sounds)
         {
-            if (GameObject.Find(s.name) != null)
+            /*if (GameObject.Find(s.name) != null)
             { s.source = GameObject.Find(s.name).AddComponent<AudioSource>(); }
-            else { s.source = gameObject.AddComponent<AudioSource>(); }
-
+            else { s.source = gameObject.AddComponent<AudioSource>(); } */
+            s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
             s.source.spatialBlend = s.spatialBlend;
+            s.source.outputAudioMixerGroup = mixer.FindMatchingGroups(s.output)[0];
         }
+    }
+
+    private void Start()
+    {
+
+        Play("BGM");
     }
 
     public void Update()
     {
         timer += Time.deltaTime;
+     
     }
 
     public void Play(string name)
@@ -77,13 +87,22 @@ public class GameController : MonoBehaviour
         s.source.Play();
     }
 
-    public void MasterVolume(int masterVolume, int effectVolume, int musicVolume)
+    //Will edit volume here
+    public void MasterVolume(float masterVolume)
     {
-        foreach (Sound s in sounds)
-        {
-            if (s.music == true) { s.source.volume = s.volume * masterVolume * musicVolume; }
-            else { s.source.volume = s.volume * masterVolume * effectVolume; } 
-        }
+        mixer.SetFloat("masterVolume", masterVolume);
     }
-   
+
+    public void BaseVolume(float baseVolume)
+    {
+        mixer.SetFloat("baseVolume", baseVolume);
+    }
+
+    public void SecondVolume(float secondVolume)
+    {
+        mixer.SetFloat("secondVolume", secondVolume);
+    }
+
+
+
 }
